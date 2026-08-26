@@ -1,0 +1,327 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0f172a;
+    color: #f1f5f9;
+    overflow-x: hidden;
+    user-select: none;
+  }
+}
+
+/* -------------------------------------------------------------
+   Ara Greenhouse (아라온실) Edge UI Custom Elements & Notification Styles
+   (Verified against ag.toolkits.bundle.css)
+---------------------------------------------------------------- */
+
+notification-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+toast-item {
+  display: inline-block;
+  min-width: 240px;
+  max-width: 500px;
+  padding: 10px 20px;
+  background-color: rgba(15, 23, 42, 0.95);
+  color: #f8fafc;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.2);
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+  animation: agToastFadeInOut 3s ease-in-out forwards;
+}
+
+toast-item.fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.25s ease-out;
+}
+
+@keyframes agToastFadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+
+notification-message {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  pointer-events: none;
+}
+
+message-item {
+  display: block;
+  min-width: 320px;
+  max-width: 440px;
+  background: #ffffff;
+  color: #1e293b;
+  border-radius: 8px;
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  pointer-events: auto;
+  animation: agMessageSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+message-item.slide-out {
+  opacity: 0;
+  transform: translateX(40px) scale(0.95);
+}
+
+@keyframes agMessageSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(50px) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Custom Tag Components used in Ara Greenhouse */
+group-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+row-start {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.background-white {
+  background-color: #ffffff;
+}
+
+.background-gray-light {
+  background-color: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.background-indigo-light {
+  background-color: #eef2ff;
+  border-bottom: 1px solid #c7d2fe;
+}
+
+.padding-2 { padding: 8px 12px; }
+.padding-4 { padding: 10px 14px; }
+.padding-6 { padding: 14px 16px; }
+
+.margin-left-4 { margin-left: 8px; }
+.margin-left-auto { margin-left: auto; }
+.margin-top-4 { margin-top: 10px; }
+.gap-4 { gap: 8px; }
+.width-100 { width: 100%; }
+
+.text-bold { font-weight: 600; font-size: 14px; color: #0f172a; }
+.text-time { font-size: 11px; color: #64748b; font-weight: 500; }
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+}
+
+.button-small {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.color-indigo {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.color-indigo:hover {
+  background-color: #4338ca;
+}
+
+.color-red {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.color-red:hover {
+  background-color: #b91c1c;
+}
+
+.color-gray {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.color-gray:hover {
+  background-color: #cbd5e1;
+}
+
+/* InfoMessage and DiscoverMessage UI refinements */
+.info-message-box .message-header,
+.discover-message-box .message-header {
+  font-size: 13px;
+}
+
+.close-icon-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-icon-btn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #0f172a;
+}
+
+.message-body {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #334155;
+}
+
+.discover-card {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.device-badge {
+  font-size: 11px;
+  color: #4f46e5;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.device-badge code {
+  background: #e0e7ff;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.device-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.device-meta {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.discover-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-ag-primary {
+  flex: 1;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  font-size: 12.5px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-ag-primary:hover {
+  background: #4338ca;
+}
+
+.btn-ag-secondary {
+  background: #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+  font-size: 12.5px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-ag-secondary:hover {
+  background: #cbd5e1;
+}
+
+/* Custom Scrollbar for Windows Desktop Look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
